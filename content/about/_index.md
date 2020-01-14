@@ -15,4 +15,4 @@ I love to travel and explore because I love learning.  You can usually find my w
 
 I have over 5 years of experience leading technical and industrial, data based projects.
 
-If you want to join me in finding new and useful ways to understand data and build a better world, let's get in touch at [hire@trevorb.io](hire@trevorb.io).
+If you want to join me in finding new and useful ways to understand data and build a better world, let's get in touch at [hire@trevorb.io](mailto:hire@trevorb.io).
