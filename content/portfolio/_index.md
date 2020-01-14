@@ -3,4 +3,4 @@ title: PORTFOLIO
 description: 'Portfolio Section'
 ---
 
-Check out my past projects!
+Here are some of my past projects.
