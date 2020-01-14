@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang='en'><head>
+  <title>Predicting Scooter Utilization - Trevor Bhattacharya</title>
+  <link rel='canonical' href='https://trevorb.io/portfolio/scooters/' />
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1' />
+  <meta name='description' content='Using Machine Learning to improve strategic placement of scooters in Austin, TX' />
+  <meta name='theme-color' content='#FD3519' />
+  
+
+  <meta name="generator" content="Hugo 0.62.2" />
+
+  
+
+
+
+
+
+<link rel="stylesheet" href="https://trevorb.io/sass/style.min.cf2eeff825d4dbc673ce0b82d270d9fc32d34973a7d5cd079e0dcf4fe3e77515.css" integrity="sha256-zy7v&#43;CXU28ZzzguC0nDZ/DLTSXOn1c0Hng3PT&#43;PndRU=" media="screen">
+<link rel="stylesheet" href="https://trevorb.io/syntax.min.css" integrity="" media="screen">
+
+  <meta property="og:title" content="Predicting Scooter Utilization" />
+<meta property="og:description" content="Using Machine Learning to improve strategic placement of scooters in Austin, TX" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://trevorb.io/portfolio/scooters/" />
+<meta property="article:published_time" content="2020-01-10T19:47:09+02:00" />
+<meta property="article:modified_time" content="2020-01-10T19:47:09+02:00" />
+
+  <meta itemprop="name" content="Predicting Scooter Utilization">
+<meta itemprop="description" content="Using Machine Learning to improve strategic placement of scooters in Austin, TX">
+<meta itemprop="datePublished" content="2020-01-10T19:47:09&#43;02:00" />
+<meta itemprop="dateModified" content="2020-01-10T19:47:09&#43;02:00" />
+<meta itemprop="wordCount" content="2087">
+
+
+
+<meta itemprop="keywords" content="" />
+</head>
+<body>
+
+  <header style="background-image:linear-gradient(
+      rgba(0,0,0,0.4),rgba(0,0,0,0.4)
+    ),url(&#39;https://trevorb.io/images/fromMCHHQ.jpeg&#39;)">
+
+  <div class="intro">
+    <div class="logo-container">
+      <a href="/">
+        <img src='https://trevorb.io/images/profile_square.jpeg' alt="Profile Facebook Prophet" class="rounded-logo">
+      </a>
+    </div>
+    <h2>Trevor Bhattacharya</h2>
+    <h3>Engineer, Optimist, Sci-Fi Reader</h3>
+    <div class="menu">
+      
+
+        <p>
+            <a href="/about/">
+                About
+            </a>
+        </p>
+
+        <p>
+            <a href="/portfolio/">
+                Portfolio
+            </a>
+        </p>
+
+        <p>
+            <a href="/post/">
+                Post
+            </a>
+        </p>
+
+      
+        
+        <p>
+            <a href="mailto:trevor@trevorb.io" target="_blank" rel="external">
+                
+            </a>
+        </p>
+      
+    </div>
+
+  </div>
+
+  <div class="socials">
+      
+  
+
+  
+
+  
+    <a href="https://github.com/trevbhatt" class="social-link" target="_blank" rel="noopener" ><div class="icon">
+  <svg width="35px" height="35px" viewBox="0 0 115 115" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
+  
+  <path d="M102.679 0H12.32C5.52 0 0 5.519 0 12.321v90.358C0 109.48 5.519 115 12.321 115h90.358c6.802 0 12.321-5.519 12.321-12.321V12.32C115 5.52 109.481 0 102.679 0zM71.182 98.494c-2.156.385-2.952-.95-2.952-2.053 0-1.386.051-8.471.051-14.195 0-4.005-1.335-6.546-2.9-7.881C74.878 73.313 84.89 72.003 84.89 55.6c0-4.671-1.669-7.007-4.39-10.01.436-1.105 1.9-5.648-.436-11.552-3.568-1.104-11.731 4.595-11.731 4.595-3.389-.95-7.06-1.438-10.679-1.438-3.62 0-7.29.488-10.679 1.438 0 0-8.163-5.699-11.73-4.595-2.337 5.878-.899 10.422-.437 11.551-2.72 3.004-4.004 5.34-4.004 10.011 0 16.326 9.574 17.712 19.072 18.765-1.232 1.104-2.336 3.003-2.72 5.724-2.44 1.104-8.677 3.004-12.4-3.568-2.335-4.056-6.545-4.39-6.545-4.39-4.159-.05-.282 2.619-.282 2.619 2.772 1.283 4.723 6.212 4.723 6.212 2.49 7.624 14.4 5.057 14.4 5.057 0 3.568.052 9.37.052 10.422 0 1.104-.77 2.438-2.952 2.053C27.21 92.821 15.35 76.701 15.35 57.86c0-23.564 18.02-41.456 41.585-41.456s42.663 17.892 42.663 41.456c.026 18.842-11.474 34.988-28.416 40.635zM46 82.81c-.488.103-.95-.102-1.001-.436-.051-.385.282-.719.77-.822.488-.05.95.154 1.001.488.077.334-.257.668-.77.77zm-2.439-.23c0 .333-.385.615-.898.615-.565.052-.95-.23-.95-.616 0-.333.385-.616.899-.616.487-.051.95.231.95.616zm-3.516-.283c-.103.334-.616.488-1.053.334-.488-.103-.821-.488-.719-.822.103-.334.617-.488 1.053-.385.513.154.847.54.719.873zm-3.158-1.386c-.23.282-.718.23-1.104-.154-.385-.334-.487-.822-.23-1.053.23-.282.718-.23 1.103.154.334.334.462.847.231 1.053zm-2.336-2.336c-.23.154-.667 0-.95-.385-.282-.385-.282-.822 0-1.001.283-.231.72-.052.95.333.283.385.283.847 0 1.053zm-1.668-2.49c-.231.23-.616.103-.899-.154-.282-.334-.333-.719-.102-.899.23-.23.616-.102.898.154.282.334.334.72.103.899zm-1.72-1.9c-.103.231-.436.283-.719.103-.334-.154-.488-.436-.385-.667.103-.154.385-.231.719-.103.334.18.488.462.385.667z"/>
+  
+  </svg>
+</div>
+</a>
+  
+
+  
+
+  
+    <a href="https://www.instagram.com/trevbhatt" class="social-link" target="_blank" rel="noopener" ><div class="icon">
+  <svg width="35px" height="35px" viewBox="0 0 115 115" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
+  
+  <path d="M57.526 28.111c-16.254 0-29.364 13.11-29.364 29.363 0 16.254 13.11 29.364 29.364 29.364 16.253 0 29.363-13.11 29.363-29.364 0-16.253-13.11-29.363-29.363-29.363zm0 48.453c-10.504 0-19.09-8.56-19.09-19.09 0-10.528 8.56-19.09 19.09-19.09 10.528 0 19.09 8.562 19.09 19.09 0 10.53-8.587 19.09-19.09 19.09zM94.939 26.91a6.833 6.833 0 0 1-6.849 6.849 6.833 6.833 0 0 1-6.849-6.849 6.85 6.85 0 0 1 13.698 0zm19.448 6.951c-.435-9.174-2.53-17.301-9.251-23.997C98.44 3.17 90.313 1.074 81.139.614c-9.456-.537-37.797-.537-47.252 0-9.15.434-17.276 2.53-23.997 9.225S1.099 24.66.639 33.836c-.537 9.455-.537 37.796 0 47.252.434 9.174 2.53 17.3 9.251 23.996 6.721 6.696 14.822 8.792 23.997 9.252 9.455.536 37.796.536 47.252 0 9.174-.435 17.301-2.53 23.997-9.252 6.695-6.695 8.79-14.822 9.25-23.996.537-9.456.537-37.771 0-47.227zM102.17 91.233c-1.993 5.01-5.852 8.868-10.887 10.887-7.538 2.99-25.427 2.3-33.758 2.3-8.332 0-26.246.664-33.76-2.3-5.008-1.993-8.867-5.852-10.886-10.887-2.99-7.539-2.3-25.427-2.3-33.759 0-8.33-.664-26.245 2.3-33.758 1.993-5.01 5.852-8.868 10.887-10.887 7.539-2.99 25.427-2.3 33.759-2.3 8.33 0 26.245-.665 33.758 2.3 5.01 1.993 8.868 5.852 10.887 10.887 2.99 7.538 2.3 25.427 2.3 33.758 0 8.332.69 26.246-2.3 33.76z" />
+  
+  </svg>
+</div>
+</a>
+  
+
+  
+
+  
+    <a href="https://www.linkedin.com/in/trevbhatt" class="social-link" target="_blank" rel="noopener" ><div class="icon">
+  <svg width="35px" height="35px" viewBox="0 0 115 115" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
+  
+  <path d="M106.786 0H8.189C3.67 0 0 3.722 0 8.291v98.418C0 111.278 3.67 115 8.189 115h98.597c4.518 0 8.214-3.722 8.214-8.291V8.29C115 3.722 111.304 0 106.786 0zm-72.03 98.571H17.713V43.69h17.07V98.57h-.025zm-8.522-62.377c-5.467 0-9.882-4.44-9.882-9.883 0-5.442 4.415-9.882 9.882-9.882 5.442 0 9.883 4.44 9.883 9.882a9.87 9.87 0 0 1-9.883 9.883zm72.414 62.377H81.604V71.875c0-6.366-.129-14.555-8.856-14.555-8.882 0-10.242 6.931-10.242 14.093V98.57H45.46V43.69h16.352v7.495h.23c2.285-4.312 7.855-8.856 16.147-8.856 17.25 0 20.458 11.372 20.458 26.158V98.57z"/>
+  
+  </svg>
+</div>
+</a>
+  
+
+  
+
+  
+    <a href="https://twitter.com/trevbhatt" class="social-link" target="_blank" rel="noopener" ><div class="icon">
+  <svg width="35px" height="35px" viewBox="0 0 115 115" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
+  
+  <path d="M102.679 0H12.32C5.52 0 0 5.519 0 12.321v90.358C0 109.48 5.519 115 12.321 115h90.358c6.802 0 12.321-5.519 12.321-12.321V12.32C115 5.52 109.481 0 102.679 0zM90.126 40.763c.051.72.051 1.464.051 2.182 0 22.256-16.942 47.9-47.9 47.9-9.548 0-18.404-2.772-25.848-7.547 1.36.154 2.67.205 4.055.205 7.881 0 15.12-2.67 20.895-7.187-7.392-.154-13.604-5.006-15.735-11.68 2.593.385 4.929.385 7.598-.308a16.837 16.837 0 0 1-13.476-16.531v-.205a16.824 16.824 0 0 0 7.598 2.13 16.8 16.8 0 0 1-7.496-14.016c0-3.131.822-6.006 2.285-8.496a47.803 47.803 0 0 0 34.705 17.61c-2.387-11.424 6.161-20.69 16.429-20.69 4.851 0 9.215 2.027 12.296 5.313a32.99 32.99 0 0 0 10.678-4.056 16.792 16.792 0 0 1-7.393 9.267c3.389-.36 6.674-1.31 9.703-2.618a35.437 35.437 0 0 1-8.445 8.727z"/>
+  
+  </svg>
+</div>
+</a>
+  
+
+  
+
+  </div>
+
+</header>
+
+  <div class="content-wrapper">
+    
+      <div class="breadcrumb">
+  
+
+
+
+
+
+<span >
+  <a href="https://trevorb.io/">HOME</a>
+   / 
+</span>
+
+
+<span >
+  <a href="https://trevorb.io/portfolio/">PORTFOLIO</a>
+   / 
+</span>
+
+
+<span  class="active">
+  <a href="https://trevorb.io/portfolio/scooters/">Predicting Scooter Utilization</a>
+  
+</span>
+
+</div>
+
+    
+    <main id="content" class="portfolio">
+
+<h1>Predicting Scooter Utilization</h1>
+<div class="tags">
+  
+
+
+  <div class="techs portfolio-tags">
+    <div class="icon">
+  <svg width="18px" height="18px" viewBox="0 0 115 115" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
+  
+  <path d="M112.125 86.25H103.5V34.5c0-6.325-5.175-11.5-11.5-11.5H23c-6.325 0-11.5 5.175-11.5 11.5v51.75H2.875A2.883 2.883 0 0 0 0 89.125v8.625C0 107.237 7.763 115 17.25 115h80.5c9.487 0 17.25-7.763 17.25-17.25v-8.625a2.883 2.883 0 0 0-2.875-2.875zm-92-51.75c0-1.558 1.317-2.875 2.875-2.875h69c1.558 0 2.875 1.317 2.875 2.875v51.75h-74.75V34.5zm86.25 63.25c0 4.756-3.869 8.625-8.625 8.625h-80.5c-4.756 0-8.625-3.869-8.625-8.625v-2.875H41.13c1.001 1.687 2.764 2.875 4.87 2.875h23c2.106 0 3.867-1.188 4.87-2.875h32.505v2.875zM49.892 70.015l2.032-2.032a2.875 2.875 0 0 0 0-4.066L45.506 57.5l6.416-6.418a2.875 2.875 0 0 0 0-4.067l-2.032-2.032a2.875 2.875 0 0 0-4.066 0L35.34 55.466a2.875 2.875 0 0 0 0 4.066l10.483 10.483a2.877 2.877 0 0 0 4.068 0zm13.185-2.03l2.033 2.032a2.875 2.875 0 0 0 4.066 0L79.66 59.534a2.875 2.875 0 0 0 0-4.066L69.176 44.985a2.875 2.875 0 0 0-4.066 0l-2.032 2.032a2.875 2.875 0 0 0 0 4.066l6.416 6.417-6.416 6.418a2.875 2.875 0 0 0 0 4.067z" />
+  
+  </svg>
+</div>
+
+    <span>
+      
+          <a href="https://trevorb.io/techs/python/">Python</a>
+        
+      <span>- </span>
+          <a href="https://trevorb.io/techs/pymc3/">PyMC3</a>
+        
+      <span>- </span>
+          <a href="https://trevorb.io/techs/sci-kit-learn/">Sci-kit Learn</a>
+        
+      <span>- </span>
+          <a href="https://trevorb.io/techs/facebook-prophet/">Facebook Prophet</a>
+        
+      
+    </span>
+  </div>
+
+
+
+  <div class="portfolio-tags">
+    <div class="icon">
+  <svg width="18px" height="18px" viewBox="0 0 115 115" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
+  
+  <path d="M70.577 44.423c11.476 11.476 12.214 29.713 2.19 42.038-1.402 1.736-.625.868-19.078 19.321-12.285 12.285-32.18 12.296-44.47 0-12.29-12.284-12.294-32.176 0-44.47 7.36-7.362 11.642-11.657 14.242-14.253 1.676-1.674 4.566-.53 4.601 1.84.042 2.862.4 5.712 1.066 8.496a2.68 2.68 0 0 1-.72 2.515L18.112 70.206c-7.357 7.362-7.387 19.292 0 26.684 7.361 7.357 19.292 7.386 26.683 0L61.683 80c7.348-7.351 7.362-19.32 0-26.682a18.805 18.805 0 0 0-5.125-3.645c-1.038-.502-1.613-1.629-1.473-2.773a11.616 11.616 0 0 1 3.327-6.83l.983-.982a2.68 2.68 0 0 1 3.09-.516 31.268 31.268 0 0 1 8.092 5.851zm35.205-35.205c-12.292-12.296-32.186-12.285-44.47 0-18.454 18.453-17.677 17.585-19.08 19.32-10.023 12.326-9.285 30.563 2.19 42.039a31.268 31.268 0 0 0 8.092 5.85 2.68 2.68 0 0 0 3.091-.515l.983-.982a11.614 11.614 0 0 0 3.327-6.83c.14-1.144-.435-2.271-1.473-2.773a18.801 18.801 0 0 1-5.125-3.645c-7.362-7.362-7.348-19.33 0-26.681l16.889-16.89c7.391-7.387 19.322-7.358 26.683 0 7.387 7.39 7.357 19.321 0 26.683L86.591 55.09a2.68 2.68 0 0 0-.719 2.515 38.927 38.927 0 0 1 1.066 8.497c.035 2.368 2.925 3.513 4.602 1.84 2.6-2.596 6.88-6.892 14.242-14.253 12.293-12.294 12.288-32.187 0-44.471z"/>
+  
+  </svg>
+</div>
+
+    <a target="_blank" href="#ZgotmplZ">hhttps://github.com/trevbhatt/predicting_scooter_utilization</a>
+  </div>
+
+
+<div class="portfolio-tags">
+  <div class="icon">
+  <svg width="18px" height="18px" viewBox="0 0 115 115" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
+  
+  <path d="M77.577 51.23a1.807 1.807 0 0 0-2.2.342l-27.562 27.79a1.807 1.807 0 0 1-2.2.342l-14.008-9.702a1.807 1.807 0 0 0-2.2.342l-1.952 1.968c-.287.22-.456.568-.455.936.001.37.172.716.46.934L45.637 86.77a1.807 1.807 0 0 0 2.2-.342l31.709-31.97c.287-.22.456-.567.455-.936a1.175 1.175 0 0 0-.46-.933l-1.963-1.36z"/><path d="M97.304 20H80.512c-.041.34-.063.683-.064 1.026a5.986 5.986 0 0 0 1.256 4.1c.054.003.103.02.157.025a4.881 4.881 0 0 1 1.865-.025c3.05.562 4.984 3.907 4.32 7.47-.666 3.563-3.678 5.996-6.728 5.433a4.932 4.932 0 0 1-2.437-1.258c-6.018-1.378-10.445-7.795-10.445-15.745 0-.347.023-.685.04-1.026H34.579c-.041.34-.063.683-.064 1.026a5.986 5.986 0 0 0 1.256 4.1c.054.003.103.02.157.025a4.881 4.881 0 0 1 1.865-.025c3.05.562 4.984 3.907 4.32 7.47-.666 3.563-3.678 5.996-6.728 5.433a4.932 4.932 0 0 1-2.437-1.258c-6.018-1.378-10.445-7.795-10.445-15.745 0-.22.019-.434.025-.652a9.788 9.788 0 0 0-5.697 4.471 9.683 9.683 0 0 0-2.65 4.764L1.158 92.871c-.965 4.689 2.6 8.503 7.948 8.503h6.334v2.673c-.077 5.41 4.263 9.861 9.705 9.953h72.16c5.438-.095 9.774-4.546 9.694-9.953V29.953c.08-5.407-4.256-9.858-9.695-9.953zM10.078 96.653c-2.378 0-3.964-1.697-3.535-3.782L16.637 43.84h80.787L87.331 92.871a5.254 5.254 0 0 1-5.091 3.782H10.078zm91.535 7.394c.036 2.403-1.891 4.382-4.308 4.424h-72.16c-2.42-.04-4.352-2.018-4.32-4.424v-2.673h60.443c5.348 0 10.484-3.814 11.449-8.503l8.897-43.215v54.391z"/><path d="M34.814 33c1.243 0 2.251-1.057 2.251-2.36 0-1.305-1.008-2.362-2.25-2.362-2.04 0-4.313-3.194-4.313-7.778s2.272-7.778 4.312-7.778c1.227 0 2.536 1.163 3.386 3.084H43C41.716 11.19 38.578 8 34.814 8 29.871 8 26 13.49 26 20.5c0 7.009 3.871 12.5 8.814 12.5z"/>
+  
+  </svg>
+</div>
+
+  <span>2020</span>
+</div>
+</div>
+
+<img title="Predicting Scooter Utilization" alt="Predicting Scooter Utilization" src="/portfolio/scooters/austin_scooter.jpg" />
+
+<h2 id="predicting-scooter-utilization">Predicting Scooter utilization</h2>
+<p>Using Machine learning to improve strategic placement of scooters in Austin, TX.</p>
+<p><strong>Project description:</strong> Now ubiquitous, the electric scooter cruises through bike lanes and sidewalks of every major US city.  In order to stay competitive, operating companies need to ensure their scooters or e-bikes are highly utilized.  They must ensure that their fleets are in place to meet demand.  Using data provided by the city of Austin, TX, I implemented various machine learning strategies to predict optimal fleet distribution.  To jump directly to the Facebook Prophet model, <a href="#time-series-and-facebook-prophet">click here</a>.</p>
+<h3 id="table-of-contents">Table of Contents</h3>
+<ul>
+<li>
+<p><a href="#predicting-scooter-utilization">Predicting Scooter utilization</a></p>
+<ul>
+<li>
+<p><a href="#table-of-contents">Table of Contents</a></p>
+</li>
+<li>
+<p><a href="#importing-and-cleaning-the-data">Importing and Cleaning the data</a></p>
+</li>
+<li>
+<p><a href="#exploratory-data-analysis">Exploratory Data Analysis</a></p>
+<ul>
+<li><a href="#usage-visualization">Usage visualization</a></li>
+<li><a href="#statistical-modeling">Statistical Modeling</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#machine-learning-analysis">Machine Learning Analysis</a></p>
+<ul>
+<li><a href="#ridge-regression">Ridge Regression</a></li>
+<li><a href="#batch-gradient-descent">Batch Gradient Descent</a></li>
+<li><a href="#time-series-and-facebook-prophet">Time Series and Facebook Prophet</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#business-impact">Business Impact</a></p>
+<ul>
+<li><a href="#fleet-usage">Fleet Usage</a></li>
+<li><a href="#daily-dashboard">Daily Dashboard</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#future-enhancements">Future Enhancements</a></p>
+</li>
+<li>
+<p><a href="#resources">Resources</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="importing-and-cleaning-the-data">Importing and Cleaning the data</h3>
+<p>Below are the steps I took to import, wrangle, and clean the data.  The Jupyter notebook can be found <a href="https://github.com/trevbhatt/predicting_scooter_utilization/blob/master/data_wrangling.ipynb">here</a>.</p>
+<p>The city of Austin publishes data for every ride taken on a scooter within the city limits.  This data is provided to the city by all of the authorised micromobility service operators: Bird, Jump (Uber), Lime, Lyft, OjO, Spin, and Wheels.  Because not all of these providers audit their data before providing it to the city, some cleaning is required to use the data.</p>
+<p>Below are the steps I took to import, wrangle, and clean the data.  The Jupyter notebook can be found <a href="https://github.com/trevbhatt/predicting_scooter_utilization/blob/master/data_wrangling.ipynb">here</a>.</p>
+<ol>
+<li>Imported the data from the csv file downloaded from the City of Austin: <a href="https://data.austintexas.gov/d/7d8e-dm7r">https://data.austintexas.gov/d/7d8e-dm7r</a></li>
+</ol>
+<ul>
+<li>Size: 6,848,950 rows x 16 columns (each row represents a trip)</li>
+<li>Timeframe: April 2018 to September 2019</li>
+<li>Columns:
+<ul>
+<li>ID: A unique ID for each trip (string)</li>
+<li>Device ID: A unique ID for the device used (string)</li>
+<li>Vehicle Type: Bicycle or Scooter (string)</li>
+<li>Trip Duration: time length of trip in seconds (float)</li>
+<li>Trip Distance: distance traveled in meters (float)</li>
+<li>Start Time: trip start time (datetime)</li>
+<li>End Time: trip end time (datetime)</li>
+<li>Modified Date: datetime at which the record was last modified, typically when the data was extracted (datetime)</li>
+<li>Month: Month when the trip occurred (integer)</li>
+<li>Day of week: day of the week when the trip occurred, Sunday = 0 (integer)</li>
+<li>Council District (Start): City council district in which the trip started (string)</li>
+<li>Council District (End): City council district in which the trip ended (string)</li>
+<li>Year: Year when trip occurred (integer)</li>
+<li>Census Tract Start: Starting Neighborhood GEOID number from US 2010 Census Tract (string). Note&ndash;this is an 11-digit number in which all of the tracts in Austin share the first 7 digits.  Throughout this article, the last 4 digits will often be used to denote the tract.</li>
+<li>Census Tract End: Ending Neighborhood GEOID number from US 2010 Census Tract (string).  See note above.</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>Removed 132 empty/none rows.</li>
+<li>Removed 55,000 “OUT OF BOUNDS” rows</li>
+<li>Removed 590,000 excessive Trip distance and Trip Duration rows. The vast majority of the data falls within ‘reasonable’ boundaries for trip distance and duration.  However, there are outliers spread to excessive values.  In the 50-bin histograms below, these excessive values tend to only occur a handful of times. It is not possible for a trip to have a negative duration.  Also, trips longer than 12 hours or 50 miles exceed the expected use for these scooters (the best batteries only last about 30 mi). I contacted the data owner, and they told me that they are working with the vendors to understand the causes of the junky data.  Figures 1 and 2 show the data before and after removing these junky rows.</li>
+<li>Removed Bicycle data, which are out of scope of this analysis.</li>
+</ol>
+<p><figure>
+    <img src="/images/Figure_1.png"/> 
+</figure>
+
+Figure 1&ndash;Trip Duration and Trip Distance frequency before removing outliers</p>
+<p><figure>
+    <img src="/images/figure_2.png"/> 
+</figure>
+
+Figure 2&ndash;Trip Duration and Trip Distance after removing outliers.</p>
+<h3 id="exploratory-data-analysis">Exploratory Data Analysis</h3>
+<p>Once I had a clean and usable dataset, I used visualizations and statistical modeling to better understand the data.</p>
+<h4 id="usage-visualization">Usage visualization</h4>
+<p>The Jupyter notebook for this section can be found <a href="https://github.com/trevbhatt/predicting_scooter_utilization/blob/master/data_story.ipynb">here</a>.</p>
+<h5 id="usage-by-location">Usage by Location</h5>
+<p>Of the data’s 271 census tracts, usage was heavily centered in certain locations, especially the ‘1100’ census tract in the middle of downtown Austin. In Figure 3, the ‘1100’.  Figure 4 shows a heatmap of census tract usage.</p>
+<p><figure>
+    <img src="/images/figure_3.png"/> 
+</figure>
+
+Figure 3 &ndash; Total count of Census Tract Start and End Trips</p>
+<p><figure>
+    <img src="/images/figure_4.png"/> 
+</figure>
+
+Figure 4&ndash;Heatmap of census tract ridership</p>
+<p>In Figure 5, trips tend to stay within the central area (the dark blue lines), with a only few exceptions venturing to outer census tract neighborhoods (the light colored lines).  This figure shows only trips in ‘1100’, but this pattern is typical of the high-volume downtown census tracts.</p>
+<p><figure>
+    <img src="/images/figure_5.png"/> 
+</figure>
+
+Figure 5&ndash;Trip routes originating in census tract 48453001100</p>
+<h5 id="usage-by-time">Usage by Time</h5>
+<p>Unsurprisingly, the number of rides in a certain time period will vary depending on time of day and day of the week.  In Figure 6, each day of the week has a different sized curve, but each day’s usage peaks in the mid afternoon.</p>
+<p><figure>
+    <img src="/images/figure_6.png"/> 
+</figure>
+
+Figure 6&ndash;Total Daily Ridership per Hour</p>
+<p>Most scooter companies require/encourage the chargers to drop off their scooters by 7AM, so this study will focus at a daily resolution, counting on deliveries occurring during the early morning valley shared by each day.</p>
+<h4 id="statistical-modeling">Statistical Modeling</h4>
+<p>The Jupyter notebook for this section can be found <a href="https://github.com/trevbhatt/predicting_scooter_utilization/blob/master/statistical_data_analysis.ipynb">here</a>.</p>
+<p>To get an idea of how the data is distributed, I created a model to simulate a sample of the data using a Markov Chain Monte Carlo (MCMC) method. A better understanding of the distribution will influence the machine learning approaches in the next section.</p>
+<p>Since the data is discrete, I used a Poisson distribution:
+<figure>
+    <img src="/images/equation.png"/> 
+</figure>
+</p>
+<p>Using PyMC3 to generate posteriors for lambda, I set up the distribution and data so that lambda will also represent the expected daily number of trips .</p>
+<p>It’s clear from the aggregated daily trips in Figure 7 that the expected value in a given day changes as time moves forward. The analysis can be set up to attempt to account for changes in trend over time. To account for this, we can attempt to understand when a change occurred.  That is, at what point (let’s call it tau, the red line in Figure 7) did the behavior change?</p>
+<p><figure>
+    <img src="/images/figure_7.png"/> 
+</figure>
+
+Figure 7&ndash;Number of daily trips in census tract 48453001100</p>
+<p>To account for this, we can attempt to understand when this change occurred.  That is, at what point (let’s call it tau, the red line in Figure 7) did the behavior change?</p>
+<figure>
+    <img src="/images/equation_2.png"/> 
+</figure>
+
+<p>Figure 8 shows the results of the posterior for lambda1, lambda2, and tau for census tract 48453001100.</p>
+<p><figure>
+    <img src="/images/figure_8.png"/> 
+</figure>
+
+Figure 8&ndash;Posteriors for Lambda before and after a changepoint at tau.</p>
+<p>Tau falls solidly at 276 days, which would be the the beginning of January 2019.</p>
+<p>The graphs in figure 9 show lambda_1, lambda_2, and tau for the census tracts for which lambda was greater than 50.</p>
+<p><figure>
+    <img src="/images/figure_9.png"/> 
+</figure>
+
+Figure 9&ndash;Lambda1, Lambda2, and tau for the busiest census tracts.</p>
+<p>The graph of lambda_2 above creates a predicted daily count of trips for the most popular census  tracts (not yet taking into account any seasonality) .</p>
+<p>Tau is in the upper 200s for most of the census tracts, which may coincide with the steady increase in scooter popularity in 2019.  However, if the increase is indeed steady and not abrupt, choosing a single</p>
+<h3 id="machine-learning-analysis">Machine Learning Analysis</h3>
+<p>The Jupyter notebook for this section can be found <a href="https://github.com/trevbhatt/predicting_scooter_utilization/blob/master/machine_learning_analysis.ipynb">here</a>.</p>
+<h4 id="ridge-regression">Ridge Regression</h4>
+<p>First, I attempted to create a linear model without using time-series.  To try to capture seasonality in the data, I encoded the date column into 374 binary columns to represent year, day of year, day of the month, and day of the week.</p>
+<p>On the 48453001100 census tract, the ridge regression had an poor r2 score (0.355) and a very large mean absolute percent error.  The predicted vs test values are shown in Figure 10, with a dashed line to represent where prediction and test would be equal.</p>
+<p><figure>
+    <img src="/images/figure_10.png"/> 
+</figure>
+
+Figure 10&ndash;Ridge Regression Results</p>
+<h4 id="batch-gradient-descent">Batch Gradient Descent</h4>
+<p>Using the same encoded data, I attempted a batch gradient descent method with learning rate and number of iterations as hyperparameters.  These hyperparameters might give me better ‘handles’ to tune the model.</p>
+<p>Even with the quickest convergence, shown in Figure 11, the r2 score was a dismal 0.192, and still resulted in a very large mean absolute error.</p>
+<p><figure>
+    <img src="/images/figure_11.png"/> 
+</figure>
+
+Figure 11: Convergence of the batch gradient descent model</p>
+<h4 id="time-series-and-facebook-prophet">Time Series and Facebook Prophet</h4>
+<p>Linear regression having failed me, I turned to time-series.</p>
+<p>Facebook Prophet is a forecasting procedure that makes predictions on time series data.  The major tunable hyperparameters of the Facebook Prophet model are trend, holidays, and seasonality (Letham 7).</p>
+<h5 id="trend-and-changepoints">Trend and Changepoints</h5>
+<p>The first component is Trend.  Facebook Prophet accounts for the way that trends change over time using changepoints in a more sophisticated way than the MCMC methods above.  Instead of picking a tau  for a single changepoint, Facebook Prophet defines a trend slope and searches for places where that slope changes.</p>
+<p>In Figure 13, the changes in the slope of the trend line correspond to changepoints in the general trend of the daily use data.  These changepoints are highlighted in Figure 12.</p>
+<p><figure>
+    <img src="/images/figure_12.png"/> 
+</figure>
+
+Figure 12: Regression line and confidence interval of predictions by Facebook Prophet for 48453001100</p>
+<h5 id="holidays-and-south-by-southwest">Holidays and South by Southwest</h5>
+<p>Facebook Prophet then accounts for holidays. At the beginning of March the city of Austin sees a major influx of visitors attending the popular South by Southwest conference.  Facebook Prophet takes a custom dataframe of major events and US holidays and measures their effect on the prediction.  Their effects can be seen in the holidays graph of Figure 12, notice the largest spike at the beginning of March.</p>
+<h5 id="seasonality">Seasonality</h5>
+<p>Third, Seasonality can be specified yearly, monthly, weekly, and daily.  In this model, weekly and yearly seasonality effects are shown in figure 13.</p>
+<p>Not surprisingly, the weekly effect surges on weekend, and there is a general increase in the warm summer months.</p>
+<p><figure>
+    <img src="/images/figure_13.png"/> 
+</figure>
+
+igure  13&ndash; Trend, Holidays, and Weekly and Yearly seasonality</p>
+<h3 id="business-impact">Business Impact</h3>
+<p>Up to this point, the examples have focused on the ‘1100’ census tract.  In reality, micromobility operators will need to understand how to distribute their fleet across multiple census tracts.</p>
+<h4 id="fleet-usage">Fleet Usage</h4>
+<p>The data on which these forecasts are based is the sum total of all scooter operators in Austin. We cannot assume that if we predict 1,000 rides in census tract X, that one operating company could see 1,000 of their scooters used.  However, these numbers can be used to determine where to place a percentage of the fleet.  In Figure 14 I generated an area plot of the forecasted percentage distribution in the top 10 census tracts.</p>
+<p><figure>
+    <img src="/images/figure_14.png"/> 
+</figure>
+
+Figure 14&ndash;Recommended fleet distribution.</p>
+<p>Suppose a provider wanted to place scooters more aggressively to increase their share of the market. By default, Facebook Prophet predicts with an 80% uncertainty margin. The lower and upper bounds of the uncertainty could be used to calculate the percentage of fleet to use depending on how aggressive they wanted to be.  For example, setting 48453001100 and 48453000601 as aggressive yields a slightly different composition in Figure 15 than the composition in Figure 14.  The orange and blue sections are thicker than before.  Note that it would not be meaningful to set all census tracts as either ‘aggressive’ or ‘conservative, because the terms are relative to the other census tracts.</p>
+<p><figure>
+    <img src="/images/figure_15.png"/> 
+</figure>
+
+Figure 15&ndash;Recommended fleet distribution with two ‘aggressive’ estimates</p>
+<h4 id="daily-dashboard">Daily Dashboard</h4>
+<p>Ideally, this system would be integrated with the scooter operator's mobile app for the employees and contractors who place the scooters. However, to illustrate the business application of the model, I made the distribution into a daily dashboard that shows where in the prediction period the forecast was made, the percent distribution and the number of scooters to deploy for a given fleet size. I arbitrarily chose 1200 as the fleet size and made a prediction for September 30, 2019 to generate the dashboard for that day.</p>
+<p><figure>
+    <img src="/images/figure_16a.png"/> 
+</figure>
+
+<figure>
+    <img src="/images/figure_16b.png"/> 
+</figure>
+
+<figure>
+    <img src="/images/figure_16c.png"/> 
+</figure>
+</p>
+<h3 id="future-enhancements">Future Enhancements</h3>
+<p>Below are some ideas for future enhancements to the model.</p>
+<ol>
+<li>An hourly model could be used if scooter providers were interested in providing a more dynamically changing fleet distribution.</li>
+<li>Weather data might improve the predictions of the model.  Weather forecasts could be combined with historical weather data to influence the model as a type of ‘holdiay’ seasonality.</li>
+</ol>
+<h3 id="resources">Resources</h3>
+<p>P. Bazin, “Linear Regression: Implementation, Hyperparameters, Comparison - Pavel Bazin: Software Engineering, Machine Learning,” Linear Regression: Implementation, Hyperparameters, Comparison, 26-Jan-2018. [Online]. Available: <a href="http://pavelbazin.com/post/linear-regression-hyperparameters/">http://pavelbazin.com/post/linear-regression-hyperparameters/</a>. [Accessed: Dec-2019].</p>
+<p>Scikit-learn: Machine Learning in Python, Pedregosa et al., JMLR 12, pp. 2825-2830, 2011.</p>
+<p>Taylor SJ, Letham B. 2017. Forecasting at scale. PeerJ Preprints 5:e3190v2 <a href="https://doi.org/10.7287/peerj.preprints.3190v2">https://doi.org/10.7287/peerj.preprints.3190v2</a>
+C. Davidson-Pilon, “Probabilistic-Programming-and-Bayesian-Methods-for-Hackers,” GitHub. [Online]. Available: <a href="https://github.com/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers">https://github.com/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers</a>. [Accessed: Dec-2019].</p>
+
+
+
+
+    </main>
+  </div>
+  <footer>
+    <div class="footer-wrapper">
+      <p>Made with ❤ &mdash; Powered by <a href="https://gohugo.io/" target="_blank" rel="external">Hugo</a> and the <a href="https://github.com/bjacquemet/personal-web" target='_blank' rel="external">Personal Web</a> theme. Icons come from the great <a href="https://fontawesome.com/license" target="_blank" rel="external">Font Awesome</a> library</p>
+      <p>© Trevor Bhattacharya</p>
+    </div>
+  </footer>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:500,600|Raleway:400,400i,600" rel="stylesheet">
+  
+</body>
+</html>

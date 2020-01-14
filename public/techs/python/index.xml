@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on Trevor Bhattacharya</title>
+    <link>https://trevorb.io/techs/python/</link>
+    <description>Recent content in Python on Trevor Bhattacharya</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Trevor Bhattacharya</copyright>
+    <lastBuildDate>Fri, 10 Jan 2020 19:47:09 +0200</lastBuildDate>
+    
+	<atom:link href="https://trevorb.io/techs/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Predicting Scooter Utilization</title>
+      <link>https://trevorb.io/portfolio/scooters/</link>
+      <pubDate>Fri, 10 Jan 2020 19:47:09 +0200</pubDate>
+      
+      <guid>https://trevorb.io/portfolio/scooters/</guid>
+      <description>Predicting Scooter utilization Using Machine learning to improve strategic placement of scooters in Austin, TX.
+Project description: Now ubiquitous, the electric scooter cruises through bike lanes and sidewalks of every major US city. In order to stay competitive, operating companies need to ensure their scooters or e-bikes are highly utilized. They must ensure that their fleets are in place to meet demand. Using data provided by the city of Austin, TX, I implemented various machine learning strategies to predict optimal fleet distribution.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PORTFOLIO on Trevor Bhattacharya</title>
+    <link>https://trevorb.io/portfolio/</link>
+    <description>Recent content in PORTFOLIO on Trevor Bhattacharya</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Trevor Bhattacharya</copyright>
+    <lastBuildDate>Fri, 10 Jan 2020 19:47:09 +0200</lastBuildDate>
+    
+	<atom:link href="https://trevorb.io/portfolio/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Predicting Scooter Utilization</title>
+      <link>https://trevorb.io/portfolio/scooters/</link>
+      <pubDate>Fri, 10 Jan 2020 19:47:09 +0200</pubDate>
+      
+      <guid>https://trevorb.io/portfolio/scooters/</guid>
+      <description>Predicting Scooter utilization Using Machine learning to improve strategic placement of scooters in Austin, TX.
+Project description: Now ubiquitous, the electric scooter cruises through bike lanes and sidewalks of every major US city. In order to stay competitive, operating companies need to ensure their scooters or e-bikes are highly utilized. They must ensure that their fleets are in place to meet demand. Using data provided by the city of Austin, TX, I implemented various machine learning strategies to predict optimal fleet distribution.</description>
+    </item>
+    
+    <item>
+      <title>Sample project</title>
+      <link>https://trevorb.io/portfolio/sample-project/</link>
+      <pubDate>Thu, 02 May 2019 19:47:09 +0200</pubDate>
+      
+      <guid>https://trevorb.io/portfolio/sample-project/</guid>
+      <description>This would be a description of your sample project. You can add any content you&#39;d like.
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</description>
+    </item>
+    
+  </channel>
+</rss>
