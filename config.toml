@@ -77,13 +77,6 @@ pygmentsCodeFences=true
   url = "/portfolio/"
   weight = -110
 
-[[menu.main]]
-  identifier = "blog"
-  name = "Post"
-  title = "Blog section"
-  url = "/post/"
-  weight = -100
-
 [sitemap]
   changefreq = "monthly"
   filename = "sitemap.xml"
