@@ -7,7 +7,7 @@ work: [Machine Learning, Data Science]
 techs: [Python, PyMC3, Sci-kit Learn, Facebook Prophet]
 designs: []
 thumbnail: scooters/austin_scooter.jpg
-projectUrl: hhttps://github.com/trevbhatt/predicting_scooter_utilization
+projectUrl: https://github.com/trevbhatt/predicting_scooter_utilization
 
 ---
 ## Predicting Scooter utilization
