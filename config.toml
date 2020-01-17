@@ -77,6 +77,14 @@ pygmentsCodeFences=true
   url = "/portfolio/"
   weight = -110
 
+[[menu.main]]
+  identifier = "portfolio"
+  name = "Resume"
+  title = "Resume"
+  url = "https://resume.creddle.io/resume/7d3dtecbymo"
+  weight = -100
+
+
 [sitemap]
   changefreq = "monthly"
   filename = "sitemap.xml"
