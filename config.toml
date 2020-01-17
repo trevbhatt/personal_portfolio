@@ -78,7 +78,7 @@ pygmentsCodeFences=true
   weight = -110
 
 [[menu.main]]
-  identifier = "portfolio"
+  identifier = "resume"
   name = "Resume"
   title = "Resume"
   url = "https://resume.creddle.io/resume/7d3dtecbymo"
