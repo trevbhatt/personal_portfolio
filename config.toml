@@ -11,7 +11,7 @@ pygmentsCodeFences=true
 
 [params.intro]
   main = "Trevor Bhattacharya"
-  sub = "Engineer, Optimist, Sci-Fi Reader"
+  sub = "Engineer, Data Scientist, Optimist, Sci-Fi Reader"
 
 [taxonomies]
   design = "designs"
